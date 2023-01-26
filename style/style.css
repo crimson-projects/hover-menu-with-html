@@ -1,0 +1,111 @@
+/* 1.1.general-setting-pages *************************/
+/****************************************************/
+:root {
+	--pr-color: #fff;
+	--second-color: #0a0a0a;
+	--cubicbz: cubic-bezier(.9, 0, .1, 1);
+}
+
+* {
+	box-sizing: border-box;
+	font-family: 'Syne', sans-serif;
+	font-weight: 800;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: var(--second-color);
+}
+
+/******************************************/
+.wrapp {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+	z-index: 1;
+}
+
+/* hover menu with pictures **********************************/
+.menu-img {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	opacity: .4;
+	filter: blur(6px);
+	overflow: hidden;
+	transform: scale(1.1);
+}
+
+.menu-img img {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	top: 0;
+	left: 0;
+	transition: .8s var(--cubicbz);
+	transform: scale(1.2);
+	clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+}
+
+.menu-img img.active {
+	transform: scale(1);
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.menu__item {
+	position: relative;
+	list-style: none;
+}
+
+.menu__item+.menu__item {
+	margin-top: 60px;
+}
+
+.menu__item::before {
+	position: absolute;
+	content: '';
+	width: 60px;
+	height: 60px;
+	top: 50%;
+	left: 0;
+	transform: translate(-80px, -50%) rotate(225deg);
+	opacity: 0;
+	background: url(../img/arrow.svg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	will-change: transform;
+	transition: .8s var(--cubicbz);
+}
+
+.menu__link {
+	position: relative;
+	display: block;
+	text-transform: uppercase;
+	font-size: 75px;
+	line-height: .8;
+	text-decoration: none;
+	color: transparent;
+	-webkit-text-stroke: 1px var(--pr-color);
+	z-index: 2;
+	transition: .8s var(--cubicbz);
+}
+
+.menu__item:hover .menu__link {
+	transform: translateX(80px);
+	color: var(--pr-color);
+	-webkit-text-stroke: 1px transparent;
+}
+
+.menu__item:hover::before {
+	opacity: 1;
+	transform: translate(0%, -50%) rotate(180deg);
+}
